@@ -29,15 +29,11 @@ struct HomeScreen: View {
                     
                     Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
                         ZStack{
-                            VStack{
-                                Text(" New Arrival \n Explore Our Newest Arrivals! Dive into the Latest Trends")
+                           
                                 Image("promo")
                                     .resizable()
-                            }.foregroundColor(.white)
-                                .font(.system(size: 16, weight: .semibold))
-                                .frame(maxWidth: 370, minHeight: 50,alignment: .leading)
-                                .background(.gray1)
-                                .cornerRadius(15)
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 570,height: 150)
                         }.frame(maxWidth: 370)
                         
                         

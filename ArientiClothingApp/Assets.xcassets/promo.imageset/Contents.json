@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "promo.png",
       "idiom" : "universal",
       "scale" : "1x"
     },

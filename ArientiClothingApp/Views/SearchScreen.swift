@@ -8,14 +8,36 @@
 import SwiftUI
 
 struct SearchScreen: View {
-    @State private var p: [Category] = []
+    @State private var categories: [Category] = []
     @State private var searchProducts = ""
     
+    var filteredProducts: [Category]{
+        guard !searchProducts.isEmpty else { return categories }
+        return categories.filter { $0.name.localizedCaseInsensitiveContains(searchProducts) }
+    }
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-        ForEach(categoryList, id: \.id) {category in
-                    CategoryCard(category: category)
+        
+        NavigationStack{
+            
+            List(categoryList, id: \.id) {category in
+                HStack(spacing: 17) {
+                    Image(category.image)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .clipShape(Circle())
+                        .frame(width: 44,height:44)
+                    Text(category.name)
+                        .font(.caption2)
+                        .fontWeight(.medium)
+                        .padding()
                 }
+                
+            }
+            .navigationTitle("Explore")
+            .searchable(text: $searchProducts, prompt: "Search")
+        }
+        
     }
 }
 

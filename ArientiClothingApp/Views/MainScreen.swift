@@ -61,18 +61,23 @@ struct MainScreen: View {
                                             .foregroundColor(.gray1)
                                             .multilineTextAlignment(.center)
                                             .padding()
+                    NavigationLink{
+                            HomeScreen()
+                    } label:{
+                        Button{
+                    
+                        } label: {
+                            Text("Lets's Started")
+                                .foregroundColor(.white)
+                                .font(.system(size: 16, weight: .semibold))
+                                .frame(maxWidth: 370, minHeight: 50, alignment: .center)
+                                .background(.lightPink)
+                                .cornerRadius(15)
+                                }
+                .frame(maxWidth: .infinity,maxHeight: 695, alignment: .bottom)
+            }
+           
             
-            Button(action: {
-                
-            }, label: {
-                Text("Lets's Started")
-                    .foregroundColor(.white)
-                    .font(.system(size: 16, weight: .semibold))
-                    .frame(maxWidth: 370, minHeight: 50, alignment: .center)
-                    .background(.lightPink)
-                    .cornerRadius(15)
-            })
-            .frame(maxWidth: .infinity,maxHeight: 695, alignment: .bottom)
         }.frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/,maxHeight: .infinity,alignment:.top)
             .padding()
         
