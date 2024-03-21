@@ -10,7 +10,7 @@ import SwiftUI
 struct NavigationScreen: View {
     var body: some View {
         TabView(){
-                    HomeScreen()
+                    HomeScreen(numberOfProducts: 1)
                         .tabItem {
                             Image(systemName: "house").renderingMode(/*@START_MENU_TOKEN@*/.template/*@END_MENU_TOKEN@*/)
                             Text("Home")

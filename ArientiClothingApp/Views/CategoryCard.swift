@@ -16,7 +16,7 @@ struct CategoryCard: View {
             Image(category.image)
                 .resizable()
                 .cornerRadius(20)
-                .frame(width: 150)
+                .frame(width: 170)
                 .scaledToFit()
             
             VStack(alignment: .leading){
@@ -24,7 +24,7 @@ struct CategoryCard: View {
                     .bold()
                 
             }.padding()
-                .frame(width: 150,alignment: .leading)
+                .frame(width: 170,alignment: .leading)
                 .background(.ultraThinMaterial)
                 .cornerRadius(10)
             
