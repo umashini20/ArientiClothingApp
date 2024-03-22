@@ -62,10 +62,12 @@ struct MainScreen: View {
                     .foregroundColor(.gray1)
                     .multilineTextAlignment(.center)
                     .padding()
-            NavigationLink(
-                    destination: HomeScreen(numberOfProducts: 1)){
-                        Button{
-                            
+            
+                NavigationLink {
+                    HomeScreen(numberOfProducts: 1)
+                } label: {
+                    Button {
+                      
                         } label: {
                             Text("Lets's Started")
                                 .foregroundColor(.white)
@@ -75,10 +77,12 @@ struct MainScreen: View {
                                 .cornerRadius(15)
                         }
                         .frame(maxWidth: .infinity,maxHeight: 695, alignment: .bottom)
+                }
+                    
                         
                         
                         
-                    }.frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/,maxHeight: .infinity,alignment:.top)
+                    .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/,maxHeight: .infinity,alignment:.top)
                     .padding()
             }
             

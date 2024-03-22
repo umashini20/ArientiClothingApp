@@ -8,29 +8,34 @@
 import SwiftUI
 
 struct ProductCard: View {
-    var product: Product
+    @StateObject var productVM : ProductViewModel = ProductViewModel()
+    @State var naviagte : Bool = false
+    @State var selectedProduct : ProductList?
+    
+  
+//    var product: Product
     var body: some View {
         ZStack(alignment: .topTrailing) {
             ZStack(alignment: .bottom){
-                Image(product.image)
+                Image(selectedProduct?.imageURL ?? "")
                     .resizable()
                     .cornerRadius(20)
                     .frame(width: 170)
                     .scaledToFit()
                 
                 VStack(alignment: .leading){
-                    Text(product.name)
+                    Text(selectedProduct?.name ?? "")
                         .bold()
                         .foregroundStyle(Color(.black))
-                    
-                    Text("Rs \(product.price)")
-                        .font(.caption)
-                        .foregroundStyle(Color(.black))
-                      
+//                    
+//                    Text("Rs \(selectedProduct.price)")
+//                        .font(.caption)
+//                        .foregroundStyle(Color(.black))
+//                      
                     
                 }.padding()
                     .frame(width: 170,alignment: .leading)
-                    .background(.ultraThinMaterial)
+                    .background(.white)
                     .cornerRadius(20)
                 
             }
@@ -53,5 +58,5 @@ struct ProductCard: View {
 }
 
 #Preview {
-    ProductCard(product: productList[0])
+    ProductCard()
 }

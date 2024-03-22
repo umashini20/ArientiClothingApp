@@ -6,8 +6,14 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ProductsScreen: View {
+    
+    @StateObject var productVM : ProductViewModel = ProductViewModel()
+    @State var naviagte : Bool = false
+    @State var selectedProduct : ProductList?
+    
     var numberOfProducts:Int
     var columns = [GridItem(.adaptive(minimum: 160), spacing: 20)]
     var body: some View {
@@ -36,8 +42,8 @@ struct ProductsScreen: View {
                             Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
                                 
                                 LazyVGrid(columns: columns, spacing: 20){
-                                    ForEach(productList, id: \.id) {product in
-                                        ProductCard(product:product)
+                                    ForEach(productVM.products, id: \.id) {product in
+                                        clothCard(product: product)
                                     }
                                 }.padding()
                                 
@@ -85,6 +91,48 @@ struct ProductsScreen: View {
         }
         .navigationViewStyle(StackNavigationViewStyle())
 
+    }
+}
+
+@ViewBuilder func clothCard(product: ProductList) -> some View {
+    ZStack(alignment: .topTrailing) {
+        ZStack(alignment: .bottom){
+            KFImage.url(URL(string: "https://www.arienti.lk/cdn/shop/files" + (product.imageURL ?? "")))
+                .resizable()
+                .cornerRadius(20)
+                .frame(width: 170,height: 250)
+                .scaledToFit()
+            
+            VStack(alignment: .leading){
+                Text(product.name ?? "")
+                    .bold()
+                    .foregroundStyle(Color(.black))
+
+                Text("Rs \(product.price)")
+                        .font(.caption)
+                        .foregroundStyle(Color(.black))
+
+                
+            }.padding()
+                .frame(width: 170,alignment: .leading)
+                .background(.white)
+                .cornerRadius(20)
+            
+        }
+        .frame(width: 170,height: 280)
+        .shadow(radius: 3)
+        
+        Button(action: {
+            print("added to cart")
+        }, label: {
+            Image(systemName: "cart")
+                .padding(8)
+                .foregroundColor(.black)
+                .background(.white)
+                .cornerRadius(50)
+                .padding()
+                
+        })
     }
 }
 
