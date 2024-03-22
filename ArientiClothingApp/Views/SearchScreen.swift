@@ -8,34 +8,36 @@
 import SwiftUI
 
 struct SearchScreen: View {
-    @State private var categories: [Category] = []
+    @State private var categories: [CategoryList] = []
     @State private var searchProducts = ""
     
-    var filteredProducts: [Category]{
-        guard !searchProducts.isEmpty else { return categories }
-        return categories.filter { $0.name.localizedCaseInsensitiveContains(searchProducts) }
-    }
+    
+    
+//    var filteredProducts: [Category]{
+//        guard !searchProducts.isEmpty else { return categories }
+//        return categories.filter { $0.name.localizedCaseInsensitiveContains(searchProducts) }
+//    }
     
     var body: some View {
         
         NavigationStack{
             
-            List(categoryList, id: \.id) {category in
-                HStack(spacing: 17) {
-                    Image(category.image)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .clipShape(Circle())
-                        .frame(width: 44,height:44)
-                    Text(category.name)
-                        .font(.caption2)
-                        .fontWeight(.medium)
-                        .padding()
-                }
-                
-            }
-            .navigationTitle("Explore")
-            .searchable(text: $searchProducts, prompt: "Search")
+//            List(categoryList, id: \.id) {category in
+//                HStack(spacing: 17) {
+//                    Image(category.image)
+//                        .resizable()
+//                        .aspectRatio(contentMode: .fit)
+//                        .clipShape(Circle())
+//                        .frame(width: 44,height:44)
+//                    Text(category.name)
+//                        .font(.caption2)
+//                        .fontWeight(.medium)
+//                        .padding()
+//                }
+//                
+//            }
+//            .navigationTitle("Explore")
+//            .searchable(text: $searchProducts, prompt: "Search")
         }
         
     }

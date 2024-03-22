@@ -6,8 +6,16 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct HomeScreen: View {
+    
+    @StateObject var bestsellerproductVM : BestSellerViewModel = BestSellerViewModel()
+    @StateObject var categoryVM : CategoryViewModel = CategoryViewModel()
+    @State var naviagte : Bool = false
+    @State var selectedBestSellerProduct : BestSellerProductList?
+    @State var selectedCategory : CategoryList?
+    
     var numberOfProducts:Int
     var columns = [GridItem(.adaptive(minimum: 160), spacing: 20)]
     var body: some View {
@@ -44,8 +52,8 @@ struct HomeScreen: View {
                             Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
                                 
                                 LazyVGrid(columns: columns, spacing: 20){
-                                    ForEach(bestSellerProductList, id: \.id) {bestSellerProduct in
-                                        BestSellerProductCard(bestSellerProduct:bestSellerProduct)
+                                    ForEach(bestsellerproductVM.bestsellerproducts, id: \.id) {bestSellerProduct in
+                                        bestSellerCard(bestsellerproduct: bestSellerProduct)
                                     }
                                 }.padding()
                                 
@@ -62,8 +70,8 @@ struct HomeScreen: View {
                                 .padding()
                             
                             LazyVGrid(columns: columns, spacing: 20){
-                                ForEach(categoryList, id: \.id) {category in
-                                    CategoryCard(category: category)
+                                ForEach(categoryVM.category, id: \.id) {category in
+                                    newCategoryCard(newCategory: category)
                                 }
                             }.padding()
                         }
@@ -89,9 +97,93 @@ struct HomeScreen: View {
                         }
                     }
                 }
+               
+    
         }
         .navigationViewStyle(StackNavigationViewStyle())
+        .navigationBarBackButtonHidden(true)
 
+    }
+}
+
+@ViewBuilder func bestSellerCard(bestsellerproduct: BestSellerProductList) -> some View {
+    ZStack(alignment: .topTrailing) {
+        ZStack(alignment: .bottom){
+            KFImage.url(URL(string: "https://www.arienti.lk/cdn/shop/files" + (bestsellerproduct.imageURL ?? "")))
+                .resizable()
+                .cornerRadius(20)
+                .frame(width: 170,height: 250)
+                .scaledToFit()
+            
+            VStack(alignment: .leading){
+                Text(bestsellerproduct.name ?? "")
+                    .bold()
+                    .foregroundStyle(Color(.black))
+
+                Text("Rs \(bestsellerproduct.price)")
+                        .font(.caption)
+                        .foregroundStyle(Color(.black))
+
+                
+            }.padding()
+                .frame(width: 170,alignment: .leading)
+                .background(.white)
+                .cornerRadius(20)
+            
+        }
+        .frame(width: 170,height: 280)
+        .shadow(radius: 3)
+        
+        Button(action: {
+            print("added to cart")
+        }, label: {
+            Image(systemName: "cart")
+                .padding(8)
+                .foregroundColor(.black)
+                .background(.white)
+                .cornerRadius(50)
+                .padding()
+                
+        })
+    }
+}
+
+@ViewBuilder func newCategoryCard(newCategory: CategoryList) -> some View {
+    ZStack(alignment: .topTrailing) {
+        ZStack(alignment: .bottom){
+            KFImage.url(URL(string: "https://www.arienti.lk/cdn/shop/files" + (newCategory.imageURL ?? "")))
+                .resizable()
+                .cornerRadius(20)
+                .frame(width: 170,height: 250)
+                .scaledToFit()
+            
+            VStack(alignment: .leading){
+                Text(newCategory.name ?? "")
+                    .bold()
+                    .foregroundStyle(Color(.black))
+
+
+                
+            }.padding()
+                .frame(width: 170,alignment: .leading)
+                .background(.white)
+                .cornerRadius(20)
+            
+        }
+        .frame(width: 170,height: 280)
+        .shadow(radius: 3)
+        
+        Button(action: {
+            print("added to cart")
+        }, label: {
+            Image(systemName: "cart")
+                .padding(8)
+                .foregroundColor(.black)
+                .background(.white)
+                .cornerRadius(50)
+                .padding()
+                
+        })
     }
 }
 

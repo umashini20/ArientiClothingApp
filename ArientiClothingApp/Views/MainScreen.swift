@@ -10,7 +10,7 @@ import SwiftUI
 struct MainScreen: View {
     var body: some View {
         
-        NavigationView{
+      
             ZStack(alignment: .topLeading){
                 HStack(alignment: .top){
                     
@@ -66,9 +66,6 @@ struct MainScreen: View {
                 NavigationLink {
                     HomeScreen(numberOfProducts: 1)
                 } label: {
-                    Button {
-                      
-                        } label: {
                             Text("Lets's Started")
                                 .foregroundColor(.white)
                                 .font(.system(size: 16, weight: .semibold))
@@ -77,7 +74,7 @@ struct MainScreen: View {
                                 .cornerRadius(15)
                         }
                         .frame(maxWidth: .infinity,maxHeight: 695, alignment: .bottom)
-                }
+                
                     
                         
                         
@@ -86,10 +83,14 @@ struct MainScreen: View {
                     .padding()
             }
             
+            
         }
     }
-}
+
 
 #Preview {
-    MainScreen()
+    NavigationView{
+        MainScreen()
+    }
+   
 }

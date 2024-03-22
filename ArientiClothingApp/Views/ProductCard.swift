@@ -16,43 +16,43 @@ struct ProductCard: View {
 //    var product: Product
     var body: some View {
         ZStack(alignment: .topTrailing) {
-            ZStack(alignment: .bottom){
-                Image(selectedProduct?.imageURL ?? "")
-                    .resizable()
-                    .cornerRadius(20)
-                    .frame(width: 170)
-                    .scaledToFit()
-                
-                VStack(alignment: .leading){
-                    Text(selectedProduct?.name ?? "")
-                        .bold()
-                        .foregroundStyle(Color(.black))
-//                    
-//                    Text("Rs \(selectedProduct.price)")
-//                        .font(.caption)
+//            ZStack(alignment: .bottom){
+//                Image(selectedProduct?.imageURL ?? "")
+//                    .resizable()
+//                    .cornerRadius(20)
+//                    .frame(width: 170)
+//                    .scaledToFit()
+//                
+//                VStack(alignment: .leading){
+//                    Text(selectedProduct?.name ?? "")
+//                        .bold()
 //                        .foregroundStyle(Color(.black))
-//                      
-                    
-                }.padding()
-                    .frame(width: 170,alignment: .leading)
-                    .background(.white)
-                    .cornerRadius(20)
-                
-            }
-            .frame(width: 170,height: 280)
-            .shadow(radius: 3)
-            
-            Button(action: {
-                print("added to cart")
-            }, label: {
-                Image(systemName: "cart")
-                    .padding(8)
-                    .foregroundColor(.black)
-                    .background(.white)
-                    .cornerRadius(50)
-                    .padding()
-                    
-            })
+////                    
+////                    Text("Rs \(selectedProduct.price)")
+////                        .font(.caption)
+////                        .foregroundStyle(Color(.black))
+////                      
+//                    
+//                }.padding()
+//                    .frame(width: 170,alignment: .leading)
+//                    .background(.white)
+//                    .cornerRadius(20)
+//                
+//            }
+//            .frame(width: 170,height: 280)
+//            .shadow(radius: 3)
+//            
+//            Button(action: {
+//                print("added to cart")
+//            }, label: {
+//                Image(systemName: "cart")
+//                    .padding(8)
+//                    .foregroundColor(.black)
+//                    .background(.white)
+//                    .cornerRadius(50)
+//                    .padding()
+//                    
+//            })
         }
     }
 }

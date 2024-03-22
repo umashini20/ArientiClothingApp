@@ -26,6 +26,8 @@
 		0049EAAA2BAD4A930023276C /* ProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0049EAA92BAD4A930023276C /* ProductViewModel.swift */; };
 		0049EAAC2BAD547C0023276C /* ProductDetailsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0049EAAB2BAD547C0023276C /* ProductDetailsScreen.swift */; };
 		0049EAAF2BAD73B90023276C /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 0049EAAE2BAD73B90023276C /* Kingfisher */; };
+		0049EAB12BAD78EF0023276C /* BestSellerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0049EAB02BAD78EF0023276C /* BestSellerViewModel.swift */; };
+		0049EAB32BAD7F710023276C /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0049EAB22BAD7F710023276C /* CategoryViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,8 @@
 		0015129E2BAC26C8004A7BCF /* ProductsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsScreen.swift; sourceTree = "<group>"; };
 		0049EAA92BAD4A930023276C /* ProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewModel.swift; sourceTree = SOURCE_ROOT; };
 		0049EAAB2BAD547C0023276C /* ProductDetailsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsScreen.swift; sourceTree = "<group>"; };
+		0049EAB02BAD78EF0023276C /* BestSellerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BestSellerViewModel.swift; path = ArientiClothingApp/Views/BestSellerViewModel.swift; sourceTree = SOURCE_ROOT; };
+		0049EAB22BAD7F710023276C /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CategoryViewModel.swift; path = ArientiClothingApp/Views/CategoryViewModel.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +125,8 @@
 			isa = PBXGroup;
 			children = (
 				0049EAA92BAD4A930023276C /* ProductViewModel.swift */,
+				0049EAB02BAD78EF0023276C /* BestSellerViewModel.swift */,
+				0049EAB22BAD7F710023276C /* CategoryViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -218,6 +224,7 @@
 				0015129A2BAC1A5E004A7BCF /* BestSellerProductCard.swift in Sources */,
 				001512982BAC17D7004A7BCF /* BestSellerProduct.swift in Sources */,
 				0015128C2BABFC09004A7BCF /* CategoryCard.swift in Sources */,
+				0049EAB12BAD78EF0023276C /* BestSellerViewModel.swift in Sources */,
 				0015128E2BABFCEE004A7BCF /* AccountScreen.swift in Sources */,
 				001512922BABFD08004A7BCF /* SearchScreen.swift in Sources */,
 				0015129F2BAC26C8004A7BCF /* ProductsScreen.swift in Sources */,
@@ -226,6 +233,7 @@
 				0049EAAC2BAD547C0023276C /* ProductDetailsScreen.swift in Sources */,
 				001512862BABFB9F004A7BCF /* Category.swift in Sources */,
 				001512962BAC13BB004A7BCF /* ProductCard.swift in Sources */,
+				0049EAB32BAD7F710023276C /* CategoryViewModel.swift in Sources */,
 				0049EAAA2BAD4A930023276C /* ProductViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
