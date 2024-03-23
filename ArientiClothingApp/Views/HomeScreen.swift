@@ -12,9 +12,13 @@ struct HomeScreen: View {
     
     @StateObject var bestsellerproductVM : BestSellerViewModel = BestSellerViewModel()
     @StateObject var categoryVM : CategoryViewModel = CategoryViewModel()
-    @State var naviagte : Bool = false
+    @State var navigate : Bool = false
     @State var selectedBestSellerProduct : BestSellerProductList?
     @State var selectedCategory : CategoryList?
+    
+    @StateObject var productCatVM : ProductViewModel = ProductViewModel()
+    @State var naviagte : Bool = false
+    @State var selectedProductCat : ProductList?
     
     var numberOfProducts:Int
     var columns = [GridItem(.adaptive(minimum: 160), spacing: 20)]
@@ -70,11 +74,16 @@ struct HomeScreen: View {
                                 .padding()
                             
                             LazyVGrid(columns: columns, spacing: 20){
-                                ForEach(categoryVM.category, id: \.id) {category in
+                                ForEach(productCatVM.products, id: \.id) {category in
                                     newCategoryCard(newCategory: category)
+                                  
+                                   
                                 }
+                        
                             }.padding()
+                           
                         }
+                       
                     }
                 }
                 
@@ -85,16 +94,16 @@ struct HomeScreen: View {
                     ZStack(alignment: .topTrailing){
                         Image(systemName: "cart").imageScale(.large)
                             .foregroundColor(.lightPink)
-                            .padding(.top, 5)
+                            .padding(.top, 10)
                         
-                        if numberOfProducts > 0 {
-                            Text("\(numberOfProducts)")
-                                .font(.caption2).bold()
-                                .foregroundColor(.white)
-                                .frame(width: 15,height: 15)
-                                .background(Color(.creamPink))
-                                .cornerRadius(50)
-                        }
+//                        if numberOfProducts > 0 {
+//                            Text("\(numberOfProducts)")
+//                                .font(.caption2).bold()
+//                                .foregroundColor(.white)
+//                                .frame(width: 15,height: 15)
+//                                .background(Color(.creamPink))
+//                                .cornerRadius(50)
+//                        }
                     }
                 }
                
@@ -148,17 +157,17 @@ struct HomeScreen: View {
     }
 }
 
-@ViewBuilder func newCategoryCard(newCategory: CategoryList) -> some View {
+@ViewBuilder func newCategoryCard(newCategory: ProductList) -> some View {
     ZStack(alignment: .topTrailing) {
         ZStack(alignment: .bottom){
-            KFImage.url(URL(string: "https://www.arienti.lk/cdn/shop/files" + (newCategory.imageURL ?? "")))
+            KFImage.url(URL(string: "https://www.arienti.lk/cdn/shop/files" + (newCategory.category.imageURL ?? "")))
                 .resizable()
                 .cornerRadius(20)
                 .frame(width: 170,height: 250)
                 .scaledToFit()
             
             VStack(alignment: .leading){
-                Text(newCategory.name ?? "")
+                Text(newCategory.category.name ?? "")
                     .bold()
                     .foregroundStyle(Color(.black))
 

@@ -13,8 +13,9 @@ struct ProductsScreen: View {
     @StateObject var productVM : ProductViewModel = ProductViewModel()
     @State var naviagte : Bool = false
     @State var selectedProduct : ProductList?
+
     
-    var numberOfProducts:Int
+//    var numberOfProducts:Int
     var columns = [GridItem(.adaptive(minimum: 160), spacing: 20)]
     var body: some View {
         
@@ -76,14 +77,14 @@ struct ProductsScreen: View {
                                         .foregroundColor(.lightPink)
                                     .padding(.top, 5)
                                 
-                                if numberOfProducts > 0 {
-                                    Text("\(numberOfProducts)")
-                                        .font(.caption2).bold()
-                                        .foregroundColor(.white)
-                                        .frame(width: 15,height: 15)
-                                        .background(Color(.creamPink))
-                                        .cornerRadius(50)
-                                }
+//                                if numberOfProducts > 0 {
+//                                    Text("\(numberOfProducts)")
+//                                        .font(.caption2).bold()
+//                                        .foregroundColor(.white)
+//                                        .frame(width: 15,height: 15)
+//                                        .background(Color(.creamPink))
+//                                        .cornerRadius(50)
+//                                }
                             }
                         }
                     }
@@ -116,7 +117,7 @@ struct ProductsScreen: View {
             }.padding()
                 .frame(width: 170,alignment: .leading)
                 .background(.white)
-                .cornerRadius(20)
+                .cornerRadius(10)
             
         }
         .frame(width: 170,height: 280)
@@ -137,5 +138,5 @@ struct ProductsScreen: View {
 }
 
 #Preview {
-    ProductsScreen(numberOfProducts: 1)
+    ProductsScreen()
 }
