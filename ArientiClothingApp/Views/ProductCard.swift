@@ -8,9 +8,6 @@
 import SwiftUI
 
 struct ProductCard: View {
-    @StateObject var productVM : ProductViewModel = ProductViewModel()
-    @State var naviagte : Bool = false
-    @State var selectedProduct : ProductList?
     
   
 //    var product: Product

@@ -6,38 +6,46 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct SearchScreen: View {
-    @State private var categories: [CategoryList] = []
+    @StateObject var productView = ProductViewModel()
+    
+//    @State private var categories: [CategoryList] = []
+    @State var selectedProductN: [ProductList] = []
     @State private var searchProducts = ""
+    @State private var isList: Bool = false
+    @State private var isShowingDetails: Bool = false
     
     
     
-//    var filteredProducts: [Category]{
-//        guard !searchProducts.isEmpty else { return categories }
-//        return categories.filter { $0.name.localizedCaseInsensitiveContains(searchProducts) }
-//    }
+    
+    
+    var filteredProducts: [ProductList]{
+        guard !searchProducts.isEmpty else { return productView.products}
+        return productView.products.filter { $0.name.localizedCaseInsensitiveContains(searchProducts) }
+    }
     
     var body: some View {
         
         NavigationStack{
             
-//            List(categoryList, id: \.id) {category in
-//                HStack(spacing: 17) {
-//                    Image(category.image)
-//                        .resizable()
-//                        .aspectRatio(contentMode: .fit)
-//                        .clipShape(Circle())
-//                        .frame(width: 44,height:44)
-//                    Text(category.name)
-//                        .font(.caption2)
-//                        .fontWeight(.medium)
-//                        .padding()
-//                }
-//                
-//            }
-//            .navigationTitle("Explore")
-//            .searchable(text: $searchProducts, prompt: "Search")
+            List(filteredProducts, id: \.id) {product in
+                HStack(spacing: 17) {
+                    KFImage.url(URL(string: "https://www.arienti.lk/cdn/shop/files" + (product.imageURL ?? "")))
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .clipShape(Circle())
+                        .frame(width: 44,height:44)
+                    Text(product.name)
+                        .font(.caption2)
+                        .fontWeight(.medium)
+                        .padding()
+                }
+                
+            }
+            .navigationTitle("Explore")
+            .searchable(text: $searchProducts, prompt: "Search")
         }
         
     }

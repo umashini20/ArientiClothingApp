@@ -64,11 +64,11 @@ struct ProductList: Codable {
 
 // MARK: - Category
 struct CategoryListNew: Codable {
-    let id, name, imageURL: String
+    let catimageURL, catname, cid: String
 
     enum CodingKeys: String, CodingKey {
-        case id, name
-        case imageURL = "imageUrl"
+        case catimageURL = "catimageUrl"
+        case catname, cid
     }
 }
 //correct

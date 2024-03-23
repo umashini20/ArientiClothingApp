@@ -14,7 +14,7 @@ struct HomeScreen: View {
     @StateObject var categoryVM : CategoryViewModel = CategoryViewModel()
     @State var navigate : Bool = false
     @State var selectedBestSellerProduct : BestSellerProductList?
-    @State var selectedCategory : CategoryList?
+//    @State var selectedCategory : CategoryList?
     
     @StateObject var productCatVM : ProductViewModel = ProductViewModel()
     @State var naviagte : Bool = false
@@ -75,8 +75,10 @@ struct HomeScreen: View {
                             
                             LazyVGrid(columns: columns, spacing: 20){
                                 ForEach(productCatVM.products, id: \.id) {category in
-                                    newCategoryCard(newCategory: category)
-                                  
+//                                    NavigationLink(destination: ProductsScreen(selectedProduct: category)){
+                                        newCategoryCard(newCategory: category)
+                                        
+                                  //  }
                                    
                                 }
                         
@@ -160,14 +162,14 @@ struct HomeScreen: View {
 @ViewBuilder func newCategoryCard(newCategory: ProductList) -> some View {
     ZStack(alignment: .topTrailing) {
         ZStack(alignment: .bottom){
-            KFImage.url(URL(string: "https://www.arienti.lk/cdn/shop/files" + (newCategory.category.imageURL ?? "")))
+            KFImage.url(URL(string: "https://www.arienti.lk/cdn/shop/files" + (newCategory.category.catimageURL ?? "")))
                 .resizable()
                 .cornerRadius(20)
                 .frame(width: 170,height: 250)
                 .scaledToFit()
             
             VStack(alignment: .leading){
-                Text(newCategory.category.name ?? "")
+                Text(newCategory.category.catname ?? "")
                     .bold()
                     .foregroundStyle(Color(.black))
 
@@ -176,7 +178,7 @@ struct HomeScreen: View {
             }.padding()
                 .frame(width: 170,alignment: .leading)
                 .background(.white)
-                .cornerRadius(20)
+                .cornerRadius(10)
             
         }
         .frame(width: 170,height: 280)
