@@ -64,7 +64,8 @@ struct MainScreen: View {
                     .padding()
             
                 NavigationLink {
-                    HomeScreen(numberOfProducts: 1)
+//                    HomeScreen(numberOfProducts: 1)
+                      NavigationScreen()
                 } label: {
                             Text("Lets's Started")
                                 .foregroundColor(.white)

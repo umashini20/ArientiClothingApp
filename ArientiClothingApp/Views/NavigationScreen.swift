@@ -23,25 +23,25 @@ struct NavigationScreen: View {
                         }
                         .tag(1)
             
-                   ProductsScreen()
+                   ProductsScreen(numberOfProducts: 1)
                         .tabItem {
                             Image(systemName: "bag").renderingMode(/*@START_MENU_TOKEN@*/.template/*@END_MENU_TOKEN@*/)
                             Text("Products")
                        }
-                       .tag(1)
+                       .tag(2)
 
                     CartScreen()
                         .tabItem {
                             Image(systemName: "cart").renderingMode(/*@START_MENU_TOKEN@*/.template/*@END_MENU_TOKEN@*/)
                             Text("Cart")
                         }
-                        .tag(2)
+                        .tag(3)
                     AccountScreen()
                         .tabItem {
                             Image(systemName: "person").renderingMode(/*@START_MENU_TOKEN@*/.template/*@END_MENU_TOKEN@*/)
                             Text("Account")
                         }
-                        .tag(3)
+                        .tag(4)
                 }.accentColor(.lightPink)
     }
 }

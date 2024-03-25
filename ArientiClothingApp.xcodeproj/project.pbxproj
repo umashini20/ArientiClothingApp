@@ -29,6 +29,8 @@
 		0049EAB12BAD78EF0023276C /* BestSellerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0049EAB02BAD78EF0023276C /* BestSellerViewModel.swift */; };
 		0049EAB32BAD7F710023276C /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0049EAB22BAD7F710023276C /* CategoryViewModel.swift */; };
 		008FB5F52BAE8C2300EC61DC /* SelectedCategoryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008FB5F42BAE8C2300EC61DC /* SelectedCategoryScreen.swift */; };
+		0093050D2BB18319006A255C /* CartManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0093050C2BB18319006A255C /* CartManager.swift */; };
+		0093050F2BB1914E006A255C /* CartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0093050E2BB1914E006A255C /* CartButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +56,8 @@
 		0049EAB02BAD78EF0023276C /* BestSellerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BestSellerViewModel.swift; path = ArientiClothingApp/Views/BestSellerViewModel.swift; sourceTree = SOURCE_ROOT; };
 		0049EAB22BAD7F710023276C /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CategoryViewModel.swift; path = ArientiClothingApp/Views/CategoryViewModel.swift; sourceTree = SOURCE_ROOT; };
 		008FB5F42BAE8C2300EC61DC /* SelectedCategoryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCategoryScreen.swift; sourceTree = "<group>"; };
+		0093050C2BB18319006A255C /* CartManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CartManager.swift; path = ArientiClothingApp/CartManager.swift; sourceTree = SOURCE_ROOT; };
+		0093050E2BB1914E006A255C /* CartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,12 +91,14 @@
 		0015126D2BABEEDC004A7BCF /* ArientiClothingApp */ = {
 			isa = PBXGroup;
 			children = (
+				0093050C2BB18319006A255C /* CartManager.swift */,
 				0015127E2BABEF10004A7BCF /* Models */,
 				0015127D2BABEF05004A7BCF /* ViewModel */,
 				0015127C2BABEEF2004A7BCF /* Views */,
 				0015126E2BABEEDC004A7BCF /* ArientiClothingAppApp.swift */,
 				001512722BABEEDD004A7BCF /* Assets.xcassets */,
 				001512742BABEEDD004A7BCF /* Preview Content */,
+				0093050E2BB1914E006A255C /* CartButton.swift */,
 			);
 			path = ArientiClothingApp;
 			sourceTree = "<group>";
@@ -225,6 +231,8 @@
 				001512882BABFBBD004A7BCF /* ProductModel.swift in Sources */,
 				001512942BABFDC2004A7BCF /* NavigationScreen.swift in Sources */,
 				0015129A2BAC1A5E004A7BCF /* BestSellerProductCard.swift in Sources */,
+				0093050F2BB1914E006A255C /* CartButton.swift in Sources */,
+				0093050D2BB18319006A255C /* CartManager.swift in Sources */,
 				001512982BAC17D7004A7BCF /* BestSellerProduct.swift in Sources */,
 				0015128C2BABFC09004A7BCF /* CategoryCard.swift in Sources */,
 				0049EAB12BAD78EF0023276C /* BestSellerViewModel.swift in Sources */,

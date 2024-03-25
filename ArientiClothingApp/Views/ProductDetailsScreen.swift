@@ -16,11 +16,20 @@ struct ProductDetailsScreen: View {
     
     var body: some View {
      
-                VStack(spacing: 0){
+                VStack{
                   
-                    KFImage.url(URL(string: "https://www.arienti.lk/cdn/shop/files" + (selectProduct?.imageURL ?? "")))
+//                    KFImage.url(URL(string: "https://www.arienti.lk/cdn/shop/files" + (selectProduct?.imageURL ?? "")))
+                    VStack{
+                        
+                    }
+                    .padding()
+                    VStack {
+               KFImage.url(URL(string: "https://www.arienti.lk/cdn/shop/files" + (selectProduct?.imageURL ?? "")))
+//                        Image("pic2")
+                        .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: 300, height: 270)
+                        .frame(width: 400, height: 300)
+                    }.frame(maxWidth: 400,maxHeight: 300)
                     
                     VStack(alignment:.leading){
                         Text(selectProduct?.name ?? "")
@@ -33,28 +42,29 @@ struct ProductDetailsScreen: View {
                             .font(.title2)
                         Text(selectProduct?.description ?? "")
                             .multilineTextAlignment(.center)
-                            .font(.body)
-                            .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                            .padding()
-                    }
-                    Spacer()
+                            .font(.system(size: 10))
+                            .fontWeight(.thin)
+                           
+                    }.padding([.leading, .trailing], 20) 
                     
                     Button{
                         print("taped")
                     } label: {
                         Text("ADD TO CART")
-                            .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                            .foregroundColor(.white)
+                            .font(.system(size: 16, weight: .semibold))
+                            .frame(maxWidth: 270, minHeight: 40, alignment: .center)
                             .background(.black)
+                            .foregroundColor(.white)
+                            .cornerRadius(15)
                     }
-                    .padding(.bottom,30)
+                    .padding(.bottom,20)
                     
                 }
-                .frame(width: 300, height: 525)
+                .frame(width: 300, height: 540)
                         .background(Color(.systemBackground))
-                        .cornerRadius(15)
+                        .cornerRadius(10)
                         .shadow(radius: 40)
-                        .overlay(
+    
                                     Button{
                                        isShowingDetails = false
                                    } label: {
@@ -69,9 +79,9 @@ struct ProductDetailsScreen: View {
                                                       .frame(width: 44, height: 44)
                                                       .foregroundColor(.black)
                                               }
-                                   },
-                                   alignment: .topTrailing
-                               )
+                                   }
+                                 
+                               
                 
             }
         }

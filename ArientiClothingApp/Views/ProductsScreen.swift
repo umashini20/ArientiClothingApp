@@ -10,10 +10,12 @@ import Kingfisher
 
 struct ProductsScreen: View {
     
+    @StateObject var cartManager = CartManager()
     @StateObject var productVM : ProductViewModel = ProductViewModel()
     @State var navigate : Bool = false
     @State var selectedProduct : Product?
     @State var isSelected : Bool = false
+    var numberOfProducts:Int
     var columns = [GridItem(.adaptive(minimum: 160), spacing: 20)]
     var body: some View {
         
@@ -25,11 +27,11 @@ struct ProductsScreen: View {
                             HStack {
                                 Image(systemName: "line.horizontal.3")
                                     .imageScale(.large)
-                                    .frame(width: 20)
-                                Text("Dresses")
-                                    .frame(width: 290,height: 19,alignment: .top)
-                                    .font(.system(size: 24,weight: .regular))
-                                .padding()
+                                    .frame(width: 350,alignment: .leading)
+//                                Text("Dresses")
+//                                    .frame(width: 290,height: 19,alignment: .top)
+//                                    .font(.system(size: 24,weight: .regular))
+//                                .padding()
                             }
                             
                             
@@ -37,15 +39,19 @@ struct ProductsScreen: View {
                                 
                                 LazyVGrid(columns: columns, spacing: 20){
                                     ForEach(productVM.products, id: \.id) {product in
-                                        clothCard(product: product)
+                                        ProductCard(product: product).environmentObject(cartManager)
                                             .onTapGesture {
                                                 selectedProduct = product
                                                 isSelected = true
-  
+                                             
                                             }
-                                    
+//                                        if isSelected{
+//                                            ProductDetailsScreen(selectProduct: $selectedProduct, isShowingDetails: .constant(true))
+//                                            
+//                                        }
                                     }
                                 }.padding()
+                         
                             
                         }
                     }
@@ -68,30 +74,35 @@ struct ProductsScreen: View {
                             
                             ZStack(alignment: .topTrailing){
                                 
-                              
+                                NavigationLink {
+                                    CartScreen()
+                                        .environmentObject(cartManager)
+                                } label: {
+                                    CartButton(numberOfProducts: cartManager.products.count)
+                                }
                                     
-                                    Image(systemName: "cart").imageScale(.large)
-                                        .foregroundColor(.lightPink)
-                                    .padding(.top, 5)
-                                
-//                                if numberOfProducts > 0 {
-//                                    Text("\(numberOfProducts)")
-//                                        .font(.caption2).bold()
-//                                        .foregroundColor(.white)
-//                                        .frame(width: 15,height: 15)
-//                                        .background(Color(.creamPink))
-//                                        .cornerRadius(50)
-//                                }
+                             
                             }
                         }
                     }
                 }
         }
-        .blur(radius : isSelected ? /*@START_MENU_TOKEN@*/3.0/*@END_MENU_TOKEN@*/ : 0)
+      .blur(radius : isSelected ? /*@START_MENU_TOKEN@*/3.0/*@END_MENU_TOKEN@*/ : 0)
 //        .navigationViewStyle(StackNavigationViewStyle())
-        if isSelected{
-            ProductDetailsScreen(selectProduct: $selectedProduct, isShowingDetails: .constant(true))
+      .overlay(
+        ZStack{
+            if isSelected{
+                ProductDetailsScreen(selectProduct: $selectedProduct, isShowingDetails: .constant(true))
+                    .frame(width: 300, height: 530)
+                 
+                
+            }
         }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                
+        )
+        
+   
 
     }
  
@@ -99,7 +110,8 @@ struct ProductsScreen: View {
 }
 
 @ViewBuilder func clothCard(product: Product) -> some View {
-
+    @EnvironmentObject var cartManager: CartManager
+    
 ZStack(alignment: .topTrailing) {
    ZStack(alignment: .bottom){
        KFImage.url(URL(string: "https://www.arienti.lk/cdn/shop/files" + (product.imageURL ?? "")))
@@ -148,5 +160,5 @@ ZStack(alignment: .topTrailing) {
     
 
 #Preview {
-    ProductsScreen()
+    ProductsScreen(numberOfProducts: 1)
 }

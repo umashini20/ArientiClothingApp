@@ -8,11 +8,17 @@
 import SwiftUI
 
 struct CartScreen: View {
+    @EnvironmentObject var cartManager: CartManager
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ScrollView {
+            Text("Cart Is Empty!")
+        }
+        .navigationTitle("Cart")
+        .padding(.top)
     }
 }
 
 #Preview {
     CartScreen()
+        .environmentObject(CartManager())
 }

@@ -97,14 +97,14 @@ struct HomeScreen: View {
                             .foregroundColor(.lightPink)
                             .padding(.top, 10)
                         
-//                        if numberOfProducts > 0 {
-//                            Text("\(numberOfProducts)")
-//                                .font(.caption2).bold()
-//                                .foregroundColor(.white)
-//                                .frame(width: 15,height: 15)
-//                                .background(Color(.creamPink))
-//                                .cornerRadius(50)
-//                        }
+                        if numberOfProducts > 0 {
+                            Text("\(numberOfProducts)")
+                                .font(.caption2).bold()
+                                .foregroundColor(.white)
+                                .frame(width: 15,height: 15)
+                                .background(Color(.creamPink))
+                                .cornerRadius(50)
+                        }
                     }
                 }
                
