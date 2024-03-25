@@ -13,9 +13,9 @@ class ProductViewModel : ObservableObject{
     
     var compose = Set<AnyCancellable>()
     
-    @Published var products : [ProductList] = []
+    @Published var products : [Product] = []
     @Published var categories: [CategoryListNew] = []
-//    var selectedProduct: ProductList?
+    var selectedProduct: Product?
     
 //    var categoryId: String
     
@@ -32,7 +32,7 @@ class ProductViewModel : ObservableObject{
         session.dataTaskPublisher(for: request)
             .map(\.data)
             .retry(3)
-            .decode(type: Product.self, decoder: JSONDecoder())
+            .decode(type: ProductModel.self, decoder: JSONDecoder())
             .eraseToAnyPublisher()
             .receive(on: DispatchQueue.main)
             .sink {
@@ -42,6 +42,7 @@ class ProductViewModel : ObservableObject{
                 self.products = productArray
 //                self.extractCategories(from: productArray)
             }.store(in: &compose)
+      
     }
     
 //    private func extractCategories(from products: [ProductList]) {

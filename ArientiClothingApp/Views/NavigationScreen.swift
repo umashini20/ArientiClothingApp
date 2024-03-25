@@ -22,6 +22,13 @@ struct NavigationScreen: View {
                             Text("Search")
                         }
                         .tag(1)
+            
+                   ProductsScreen()
+                        .tabItem {
+                            Image(systemName: "bag").renderingMode(/*@START_MENU_TOKEN@*/.template/*@END_MENU_TOKEN@*/)
+                            Text("Products")
+                       }
+                       .tag(1)
 
                     CartScreen()
                         .tabItem {

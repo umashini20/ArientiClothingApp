@@ -18,7 +18,7 @@ struct HomeScreen: View {
     
     @StateObject var productCatVM : ProductViewModel = ProductViewModel()
     @State var naviagte : Bool = false
-    @State var selectedProductCat : ProductList?
+    @State var selectedProductCat : Product?
     
     var numberOfProducts:Int
     var columns = [GridItem(.adaptive(minimum: 160), spacing: 20)]
@@ -37,8 +37,7 @@ struct HomeScreen: View {
                                     Image("promo")
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
-                                        .frame(width: 390,height: .infinity)
-                                }.frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/,maxHeight: .infinity,alignment: .topLeading)
+                                }.frame(maxWidth: 400,maxHeight:400,alignment: .topLeading)
                                    
                                 
                             }.frame(maxWidth: 370)
@@ -159,7 +158,7 @@ struct HomeScreen: View {
     }
 }
 
-@ViewBuilder func newCategoryCard(newCategory: ProductList) -> some View {
+@ViewBuilder func newCategoryCard(newCategory: Product) -> some View {
     ZStack(alignment: .topTrailing) {
         ZStack(alignment: .bottom){
             KFImage.url(URL(string: "https://www.arienti.lk/cdn/shop/files" + (newCategory.category.catimageURL ?? "")))

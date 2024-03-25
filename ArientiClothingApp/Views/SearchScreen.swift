@@ -12,7 +12,7 @@ struct SearchScreen: View {
     @StateObject var productView = ProductViewModel()
     
 //    @State private var categories: [CategoryList] = []
-    @State var selectedProductN: [ProductList] = []
+    @State var selectedProductN: [Product] = []
     @State private var searchProducts = ""
     @State private var isList: Bool = false
     @State private var isShowingDetails: Bool = false
@@ -21,7 +21,7 @@ struct SearchScreen: View {
     
     
     
-    var filteredProducts: [ProductList]{
+    var filteredProducts: [Product]{
         guard !searchProducts.isEmpty else { return productView.products}
         return productView.products.filter { $0.name.localizedCaseInsensitiveContains(searchProducts) }
     }

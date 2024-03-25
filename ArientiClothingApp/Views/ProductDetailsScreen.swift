@@ -6,42 +6,77 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ProductDetailsScreen: View {
+    
+    
+    @Binding var selectProduct : Product?
+    @Binding var isShowingDetails: Bool
+    
     var body: some View {
-        NavigationView{
-            ZStack{
+     
                 VStack(spacing: 0){
                   
-                    Image("pic5")
-                        .resizable()
-                        .aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
-                        .frame(width:.infinity, height: 425)
-                        .cornerRadius(10)
-                        .padding()
+                    KFImage.url(URL(string: "https://www.arienti.lk/cdn/shop/files" + (selectProduct?.imageURL ?? "")))
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 300, height: 270)
                     
                     VStack(alignment:.leading){
-                        Text("Mid Dress")
-                            .frame(maxWidth: 100,maxHeight: 5,alignment: .leading)
+                        Text(selectProduct?.name ?? "")
                             .font(.system(size: 20))
+                            .fontWeight(.semibold)
+                            .font(.title2)
+                        Text("Rs\(Int(selectProduct?.price ?? 0))")
+                            .font(.system(size: 20))
+                            .fontWeight(.semibold)
+                            .font(.title2)
+                        Text(selectProduct?.description ?? "")
+                            .multilineTextAlignment(.center)
+                            .font(.body)
                             .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                            .font(.title)
-                            .padding()
-                        Text("Mid Dress")
-                            .frame(maxWidth: 100,maxHeight: 5,alignment: .leading)
-                            .font(.system(size: 10))
-                            .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                            .font(.title)
                             .padding()
                     }
+                    Spacer()
+                    
+                    Button{
+                        print("taped")
+                    } label: {
+                        Text("ADD TO CART")
+                            .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                            .foregroundColor(.white)
+                            .background(.black)
+                    }
+                    .padding(.bottom,30)
                     
                 }
+                .frame(width: 300, height: 525)
+                        .background(Color(.systemBackground))
+                        .cornerRadius(15)
+                        .shadow(radius: 40)
+                        .overlay(
+                                    Button{
+                                       isShowingDetails = false
+                                   } label: {
+                                       ZStack{
+                                                  Circle()
+                                                      .frame(width: 30, height: 30)
+                                                      .foregroundColor(.white)
+                                                      .opacity(/*@START_MENU_TOKEN@*/0.8/*@END_MENU_TOKEN@*/)
+                                                  
+                                                  Image(systemName: "xmark")
+                                                      .imageScale(.small)
+                                                      .frame(width: 44, height: 44)
+                                                      .foregroundColor(.black)
+                                              }
+                                   },
+                                   alignment: .topTrailing
+                               )
                 
             }
         }
-    }
-}
+
 
 #Preview {
-    ProductDetailsScreen()
+    ProductDetailsScreen(selectProduct: .constant(MockData.sampleProduct),isShowingDetails:.constant(true))
 }
