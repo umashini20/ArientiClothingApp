@@ -12,24 +12,23 @@ struct ProductCard: View {
     @EnvironmentObject var cartManager: CartManager
 
   
-    var product: Product
+    var product: Product?
     var body: some View {
-   @EnvironmentObject var cartManager: CartManager
         
     ZStack(alignment: .topTrailing) {
        ZStack(alignment: .bottom){
-           KFImage.url(URL(string: "https://www.arienti.lk/cdn/shop/files" + (product.imageURL ?? "")))
+           KFImage.url(URL(string: "https://www.arienti.lk/cdn/shop/files" + (product?.imageURL ?? "")))
                .resizable()
                .cornerRadius(20)
                .frame(width: 170,height: 250)
                .scaledToFit()
            
            VStack(alignment: .leading){
-               Text(product.name ?? "")
+               Text(product?.name ?? "")
                    .bold()
                    .foregroundStyle(Color(.black))
 
-               Text("Rs \(product.price ?? 0)")
+               Text("Rs \(product?.price ?? 0)")
                        .font(.caption)
                        .foregroundStyle(Color(.black))
 
@@ -47,7 +46,7 @@ struct ProductCard: View {
      
       
        Button{
-           cartManager.addToCart(product: product)
+           cartManager.addToCart(product: product!)
        } label: {
            Image(systemName: "cart")
                .padding(8)
@@ -61,7 +60,7 @@ struct ProductCard: View {
     }
 }
 
-//#Preview {
-//    ProductCard()
-//        .environmentObject(CartManager())
-//}
+#Preview {
+    ProductCard()
+        .environmentObject(CartManager())
+}

@@ -23,7 +23,7 @@ struct NavigationScreen: View {
                         }
                         .tag(1)
             
-                   ProductsScreen(numberOfProducts: 1)
+                   ProductsScreen()
                         .tabItem {
                             Image(systemName: "bag").renderingMode(/*@START_MENU_TOKEN@*/.template/*@END_MENU_TOKEN@*/)
                             Text("Products")

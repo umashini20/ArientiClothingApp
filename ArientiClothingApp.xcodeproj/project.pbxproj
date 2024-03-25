@@ -31,6 +31,7 @@
 		008FB5F52BAE8C2300EC61DC /* SelectedCategoryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008FB5F42BAE8C2300EC61DC /* SelectedCategoryScreen.swift */; };
 		0093050D2BB18319006A255C /* CartManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0093050C2BB18319006A255C /* CartManager.swift */; };
 		0093050F2BB1914E006A255C /* CartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0093050E2BB1914E006A255C /* CartButton.swift */; };
+		009305122BB1B25A006A255C /* ProductRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009305112BB1B25A006A255C /* ProductRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,13 +52,14 @@
 		001512972BAC17D7004A7BCF /* BestSellerProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestSellerProduct.swift; sourceTree = "<group>"; };
 		001512992BAC1A5E004A7BCF /* BestSellerProductCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestSellerProductCard.swift; sourceTree = "<group>"; };
 		0015129E2BAC26C8004A7BCF /* ProductsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsScreen.swift; sourceTree = "<group>"; };
-		0049EAA92BAD4A930023276C /* ProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewModel.swift; sourceTree = SOURCE_ROOT; };
+		0049EAA92BAD4A930023276C /* ProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProductViewModel.swift; path = ArientiClothingApp/ViewModels/ProductViewModel.swift; sourceTree = SOURCE_ROOT; };
 		0049EAAB2BAD547C0023276C /* ProductDetailsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsScreen.swift; sourceTree = "<group>"; };
-		0049EAB02BAD78EF0023276C /* BestSellerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BestSellerViewModel.swift; path = ArientiClothingApp/Views/BestSellerViewModel.swift; sourceTree = SOURCE_ROOT; };
-		0049EAB22BAD7F710023276C /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CategoryViewModel.swift; path = ArientiClothingApp/Views/CategoryViewModel.swift; sourceTree = SOURCE_ROOT; };
+		0049EAB02BAD78EF0023276C /* BestSellerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BestSellerViewModel.swift; path = ArientiClothingApp/ViewModels/BestSellerViewModel.swift; sourceTree = SOURCE_ROOT; };
+		0049EAB22BAD7F710023276C /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CategoryViewModel.swift; path = ArientiClothingApp/ViewModels/CategoryViewModel.swift; sourceTree = SOURCE_ROOT; };
 		008FB5F42BAE8C2300EC61DC /* SelectedCategoryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCategoryScreen.swift; sourceTree = "<group>"; };
 		0093050C2BB18319006A255C /* CartManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CartManager.swift; path = ArientiClothingApp/CartManager.swift; sourceTree = SOURCE_ROOT; };
 		0093050E2BB1914E006A255C /* CartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartButton.swift; sourceTree = "<group>"; };
+		009305112BB1B25A006A255C /* ProductRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,14 +93,15 @@
 		0015126D2BABEEDC004A7BCF /* ArientiClothingApp */ = {
 			isa = PBXGroup;
 			children = (
+				009305102BB1B15E006A255C /* ViewModels */,
 				0093050C2BB18319006A255C /* CartManager.swift */,
 				0015127E2BABEF10004A7BCF /* Models */,
-				0015127D2BABEF05004A7BCF /* ViewModel */,
 				0015127C2BABEEF2004A7BCF /* Views */,
 				0015126E2BABEEDC004A7BCF /* ArientiClothingAppApp.swift */,
 				001512722BABEEDD004A7BCF /* Assets.xcassets */,
 				001512742BABEEDD004A7BCF /* Preview Content */,
 				0093050E2BB1914E006A255C /* CartButton.swift */,
+				009305112BB1B25A006A255C /* ProductRow.swift */,
 			);
 			path = ArientiClothingApp;
 			sourceTree = "<group>";
@@ -130,16 +133,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		0015127D2BABEF05004A7BCF /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				0049EAA92BAD4A930023276C /* ProductViewModel.swift */,
-				0049EAB02BAD78EF0023276C /* BestSellerViewModel.swift */,
-				0049EAB22BAD7F710023276C /* CategoryViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 		0015127E2BABEF10004A7BCF /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +141,16 @@
 				001512972BAC17D7004A7BCF /* BestSellerProduct.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		009305102BB1B15E006A255C /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				0049EAA92BAD4A930023276C /* ProductViewModel.swift */,
+				0049EAB02BAD78EF0023276C /* BestSellerViewModel.swift */,
+				0049EAB22BAD7F710023276C /* CategoryViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -244,6 +247,7 @@
 				0015126F2BABEEDC004A7BCF /* ArientiClothingAppApp.swift in Sources */,
 				0049EAAC2BAD547C0023276C /* ProductDetailsScreen.swift in Sources */,
 				001512862BABFB9F004A7BCF /* Category.swift in Sources */,
+				009305122BB1B25A006A255C /* ProductRow.swift in Sources */,
 				001512962BAC13BB004A7BCF /* ProductCard.swift in Sources */,
 				0049EAB32BAD7F710023276C /* CategoryViewModel.swift in Sources */,
 				0049EAAA2BAD4A930023276C /* ProductViewModel.swift in Sources */,

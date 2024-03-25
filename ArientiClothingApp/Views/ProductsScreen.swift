@@ -15,7 +15,7 @@ struct ProductsScreen: View {
     @State var navigate : Bool = false
     @State var selectedProduct : Product?
     @State var isSelected : Bool = false
-    var numberOfProducts:Int
+//    var numberOfProducts:Int
     var columns = [GridItem(.adaptive(minimum: 160), spacing: 20)]
     var body: some View {
         
@@ -160,5 +160,5 @@ ZStack(alignment: .topTrailing) {
     
 
 #Preview {
-    ProductsScreen(numberOfProducts: 1)
+    ProductsScreen()
 }
