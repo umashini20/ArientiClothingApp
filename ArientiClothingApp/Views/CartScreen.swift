@@ -11,7 +11,22 @@ struct CartScreen: View {
     @EnvironmentObject var cartManager: CartManager
     var body: some View {
         ScrollView {
-            Text("Cart Is Empty!")
+            if cartManager.cartItems.count > 0 {
+                ForEach(cartManager.cartItems, id: \.product?.compundID){
+                    cartItem in
+                    ProductRow(product: cartItem.product, qty: cartItem.qty, productID: cartItem.product?.id ?? "")
+                }
+                HStack{
+                    Text("Your cart total is ")
+                    Spacer()
+                    Text("Rs \(cartManager.total).00")
+                        .bold()
+                }
+                .padding()
+            } else {
+                Text("Cart Is Empty!")
+            }
+            
         }
         .navigationTitle("Cart")
         .padding(.top)

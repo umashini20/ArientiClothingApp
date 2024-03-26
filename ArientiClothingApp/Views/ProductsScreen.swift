@@ -10,7 +10,8 @@ import Kingfisher
 
 struct ProductsScreen: View {
     
-    @StateObject var cartManager = CartManager()
+   // @StateObject var cartManager = CartManager()
+    @EnvironmentObject var cartManager: CartManager
     @StateObject var productVM : ProductViewModel = ProductViewModel()
     @State var navigate : Bool = false
     @State var selectedProduct : Product?
@@ -38,7 +39,7 @@ struct ProductsScreen: View {
 //                            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
                                 
                                 LazyVGrid(columns: columns, spacing: 20){
-                                    ForEach(productVM.products, id: \.id) {product in
+                                    ForEach(productVM.products, id: \.compundID) {product in
                                         ProductCard(product: product).environmentObject(cartManager)
                                             .onTapGesture {
                                                 selectedProduct = product
@@ -78,7 +79,7 @@ struct ProductsScreen: View {
                                     CartScreen()
                                         .environmentObject(cartManager)
                                 } label: {
-                                    CartButton(numberOfProducts: cartManager.products.count)
+                                    CartButton(numberOfProducts: cartManager.cartItems.count)
                                 }
                                     
                              
@@ -161,4 +162,5 @@ ZStack(alignment: .topTrailing) {
 
 #Preview {
     ProductsScreen()
+        .environmentObject(CartManager())
 }

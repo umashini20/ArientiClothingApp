@@ -64,8 +64,10 @@ struct MainScreen: View {
                     .padding()
             
                 NavigationLink {
-//                    HomeScreen(numberOfProducts: 1)
-                      NavigationScreen()
+                    //HomeScreen(numberOfProducts: 1)
+//                    ProductsScreen()
+                    NavigationScreen()
+                   
                 } label: {
                             Text("Lets's Started")
                                 .foregroundColor(.white)
@@ -73,6 +75,7 @@ struct MainScreen: View {
                                 .frame(maxWidth: 370, minHeight: 50, alignment: .center)
                                 .background(.lightPink)
                                 .cornerRadius(15)
+                              
                         }
                         .frame(maxWidth: .infinity,maxHeight: 695, alignment: .bottom)
                 

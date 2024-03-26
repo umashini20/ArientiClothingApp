@@ -11,7 +11,10 @@ import SwiftUI
 struct ArientiClothingAppApp: App {
     var body: some Scene {
         WindowGroup {
-            ProductsScreen()
+            NavigationView{
+                MainScreen()
+            }
+          
         }
     }
 }

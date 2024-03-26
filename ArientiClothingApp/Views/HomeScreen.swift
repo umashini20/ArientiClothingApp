@@ -9,18 +9,25 @@ import SwiftUI
 import Kingfisher
 
 struct HomeScreen: View {
-    
+    //@StateObject var cartManager = CartManager()
+    @EnvironmentObject var cartManager: CartManager
     @StateObject var bestsellerproductVM : BestSellerViewModel = BestSellerViewModel()
     @StateObject var categoryVM : CategoryViewModel = CategoryViewModel()
     @State var navigate : Bool = false
     @State var selectedBestSellerProduct : BestSellerProductList?
 //    @State var selectedCategory : CategoryList?
+  
+    @State var isSelected : Bool = false
     
     @StateObject var productCatVM : ProductViewModel = ProductViewModel()
     @State var naviagte : Bool = false
     @State var selectedProductCat : Product?
     
-    var numberOfProducts:Int
+    @StateObject var productVM : ProductViewModel = ProductViewModel()
+    @State var selectedProduct : Product?
+
+    
+//    var numberOfProducts:Int
     var columns = [GridItem(.adaptive(minimum: 160), spacing: 20)]
     var body: some View {
         NavigationView{
@@ -52,15 +59,18 @@ struct HomeScreen: View {
                                 .padding()
                             
                             
-                            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-                                
                                 LazyVGrid(columns: columns, spacing: 20){
-                                    ForEach(bestsellerproductVM.bestsellerproducts, id: \.id) {bestSellerProduct in
-                                        bestSellerCard(bestsellerproduct: bestSellerProduct)
+                                    ForEach(productVM.products.shuffled().prefix(2), id: \.compundID) {product in
+                                        ProductCard(product: product).environmentObject(cartManager)
+                                            .onTapGesture {
+                                                selectedProduct = product
+                                                isSelected = true
+                                             
+                                            }
                                     }
                                 }.padding()
                                 
-                            })
+
                             
                         }
                     }
@@ -90,28 +100,47 @@ struct HomeScreen: View {
                 
                 
                 
-            }.navigationTitle("Arienti")
+            }
+             .navigationBarBackButtonHidden(true)
                 .toolbar {
-                    ZStack(alignment: .topTrailing){
-                        Image(systemName: "cart").imageScale(.large)
-                            .foregroundColor(.lightPink)
-                            .padding(.top, 10)
+                    HStack {
+                        Text("Arienti")
+                            .font(.system(size:35))
+                            
+                            .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                            .frame(width: 280)
                         
-                        if numberOfProducts > 0 {
-                            Text("\(numberOfProducts)")
-                                .font(.caption2).bold()
-                                .foregroundColor(.white)
-                                .frame(width: 15,height: 15)
-                                .background(Color(.creamPink))
-                                .cornerRadius(50)
+                        ZStack(alignment: .topTrailing){
+                            
+                            NavigationLink {
+                                CartScreen()
+                                    .environmentObject(cartManager)
+                            } label: {
+                                CartButton(numberOfProducts: cartManager.cartItems.count)
+                            }
+                                
+                         
                         }
                     }
                 }
                
     
         }
-        .navigationViewStyle(StackNavigationViewStyle())
-        .navigationBarBackButtonHidden(true)
+        .blur(radius : isSelected ? /*@START_MENU_TOKEN@*/3.0/*@END_MENU_TOKEN@*/ : 0)
+  //        .navigationViewStyle(StackNavigationViewStyle())
+        .overlay(
+          ZStack{
+              if isSelected{
+                  ProductDetailsScreen(selectProduct: $selectedProduct, isShowingDetails: .constant(true))
+                      .frame(width: 300, height: 530)
+                   
+                  
+              }
+          }
+              .frame(maxWidth: .infinity, maxHeight: .infinity)
+                  
+          )
+        
 
     }
 }
@@ -198,5 +227,6 @@ struct HomeScreen: View {
 }
 
 #Preview {
-    HomeScreen(numberOfProducts: 1)
+    HomeScreen()
+        .environmentObject(CartManager())
 }

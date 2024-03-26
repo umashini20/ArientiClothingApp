@@ -16,7 +16,7 @@ struct ProductModel: Decodable {
 }
 
 // MARK: - Datum
-struct Product: Decodable {
+struct Product: Decodable, Identifiable {
     let category: CategoryListNew
     let id: String
     let name: String
@@ -34,6 +34,10 @@ struct Product: Decodable {
         case description
         case v = "__v"
     }
+    
+    var compundID: String {
+        return "\(id)-\(category.cid ?? "")"
+    }
 }
 
 // MARK: - Category
@@ -47,7 +51,7 @@ struct CategoryListNew: Decodable {
 }
 
 struct MockData{
-    static let sampleProduct = Product(category: CategoryListNew(catimageURL: "testing", catname: "testing", cid: "testing"), id: "12", name: "testing", imageURL: "testing", price: 234, description: "testing", v: 1)
+    static let sampleProduct = Product(category: CategoryListNew(catimageURL: "testing", catname: "testing", cid: "testing"), id: "12", name: "testing", imageURL: "pic2", price: 234, description: "testing", v: 1)
     
     static let products = [sampleProduct,sampleProduct,sampleProduct,sampleProduct]
 }
