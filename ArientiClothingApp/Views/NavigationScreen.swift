@@ -9,10 +9,11 @@ import SwiftUI
 
 struct NavigationScreen: View {
     @StateObject var cartManager = CartManager()
-    
+    @State var selectedTab = 0
+    @State var category: String = ""
     var body: some View {
-        TabView(){
-                    HomeScreen()
+        TabView(selection: $selectedTab){
+            HomeScreen(selectedCat: $category, selectedTab: $selectedTab)
                         .environmentObject(cartManager)
                         .tabItem {
                             Image(systemName: "house").renderingMode(/*@START_MENU_TOKEN@*/.template/*@END_MENU_TOKEN@*/)
@@ -26,7 +27,7 @@ struct NavigationScreen: View {
                         }
                         .tag(1)
             
-                   ProductsScreen()
+            ProductsScreen(selectedCat: $category)
                         .environmentObject(cartManager)
                         .tabItem {
                             Image(systemName: "bag").renderingMode(/*@START_MENU_TOKEN@*/.template/*@END_MENU_TOKEN@*/)
@@ -34,13 +35,6 @@ struct NavigationScreen: View {
                        }
                        .tag(2)
 
-//                    CartScreen()
-//                        .environmentObject(cartManager)
-//                        .tabItem {
-//                            Image(systemName: "cart").renderingMode(/*@START_MENU_TOKEN@*/.template/*@END_MENU_TOKEN@*/)
-//                            Text("Cart")
-//                        }
-//                        .tag(3)
                     AccountScreen()
                         .tabItem {
                             Image(systemName: "person").renderingMode(/*@START_MENU_TOKEN@*/.template/*@END_MENU_TOKEN@*/)
@@ -51,6 +45,7 @@ struct NavigationScreen: View {
     }
 }
 
-#Preview {
-    NavigationScreen()
-}
+//#Preview {
+//    NavigationScreen()
+//        
+//}

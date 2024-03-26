@@ -14,9 +14,10 @@ class ProductViewModel : ObservableObject{
     var compose = Set<AnyCancellable>()
     
     @Published var products : [Product] = []
-    @Published var categories: [CategoryListNew] = []
+//    @Published var filteredProducts: []
+//    @Published var categories: [CategoryListNew] = []
     var selectedProduct: Product?
-    
+    @State var uniqueCategories: Set<String> = Set()
 //    var categoryId: String
     
     init(){
@@ -43,6 +44,18 @@ class ProductViewModel : ObservableObject{
 //                self.extractCategories(from: productArray)
             }.store(in: &compose)
       
+    }
+    
+    func filterByCategory(forCategoryType proCategory: String){
+        self.products = self.products.filter{ $0.category == proCategory}
+        print(products)
+    }
+    func filterCat(from products: [Product]) -> Set<String>{
+        var uniqueCategories: Set<String> = Set()
+        for product in products {
+            uniqueCategories.insert(product.category ?? "")
+        }
+        return uniqueCategories
     }
     
 //    private func extractCategories(from products: [ProductList]) {

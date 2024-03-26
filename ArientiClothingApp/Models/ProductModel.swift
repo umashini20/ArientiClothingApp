@@ -10,48 +10,65 @@ import Foundation
 
 
 
+//struct ProductModel: Decodable {
+//    let msg: String
+//    let data: [Product]?
+//}
+//
+//// MARK: - Datum
+//struct Product: Decodable, Identifiable {
+//    let id: String
+//    let name: String
+//    let imageURL: String
+//    let price: Int
+//    let description: String
+//    let v: Int?
+//    let category: String
+//
+//    enum CodingKeys: String, CodingKey {
+//        
+//        case category
+//        case id = "_id"
+//        case name
+//        case imageURL = "imageUrl"
+//        case price = "price"
+//        case description
+//        case v = "__v"
+//        case category = "category"
+//    }
+//    
+//}
+
 struct ProductModel: Decodable {
     let msg: String
     let data: [Product]?
 }
 
 // MARK: - Datum
-struct Product: Decodable, Identifiable {
-    let category: CategoryListNew
+struct Product: Decodable , Identifiable {
     let id: String
     let name: String
     let imageURL: String
     let price: Int
     let description: String
     let v: Int?
+    let category: String
 
     enum CodingKeys: String, CodingKey {
-        case category
         case id = "_id"
         case name
         case imageURL = "imageUrl"
-        case price = "price"
-        case description
+        case price, description
         case v = "__v"
-    }
-    
-    var compundID: String {
-        return "\(id)-\(category.cid ?? "")"
+        case category
     }
 }
 
 // MARK: - Category
-struct CategoryListNew: Decodable {
-    let catimageURL, catname, cid: String?
 
-    enum CodingKeys: String, CodingKey {
-        case catimageURL = "catimageUrl"
-        case catname, cid
-    }
-}
 
 struct MockData{
-    static let sampleProduct = Product(category: CategoryListNew(catimageURL: "testing", catname: "testing", cid: "testing"), id: "12", name: "testing", imageURL: "pic2", price: 234, description: "testing", v: 1)
+    static let sampleProduct = Product(id: "12", name: "testing", imageURL: "pic2", price: 234, description: "testing", v: 1, category: "dress")
     
     static let products = [sampleProduct,sampleProduct,sampleProduct,sampleProduct]
 }

@@ -25,6 +25,12 @@ struct HomeScreen: View {
     
     @StateObject var productVM : ProductViewModel = ProductViewModel()
     @State var selectedProduct : Product?
+    
+    @Binding var selectedCat: String
+    @Binding var selectedTab: Int
+    @State var selectedFilter = 0
+    @State var selectedCategory: String = ""
+    let filterOptions = ["TOPS","DRESSES","TEES","SKIRTS","Work Wear"]
 
     
 //    var numberOfProducts:Int
@@ -51,6 +57,70 @@ struct HomeScreen: View {
                         })
                     }.padding()
                     
+                    ZStack {
+                        VStack {
+                            Text("Shop by Category")
+                                .frame(width: 320,height: 19,alignment: .leading)
+                                .font(.system(size: 22,weight: .medium))
+                                .padding()
+                            HStack {
+                                ScrollView(.horizontal, showsIndicators:false) {
+                                    LazyHStack(spacing: -24) {
+                                        let uniqueCatgories = productVM.filterCat(from: productVM.products)
+                                        
+                                        ForEach (uniqueCatgories.sorted(), id: \.self) {
+                                            category in
+                                            HStack {
+                                                Button(action: {
+                                                    selectedCat = category;
+                                                    selectedTab = 2
+                                                }, label: {
+                                                    Text(category)
+                                                        .font(.system(size: 15,weight: .medium))
+                                                })
+                                            }
+                                            .padding()
+                                            .frame(width: 120, height: 40)
+                                            
+                                        }
+                                    }
+                                }
+                            }
+//                                Picker(selection: $selectedCategory, label: Text("Select Category")){
+//                                    Text("DRESS").tag("DRESSES")
+//                                    Text("TOPS").tag("TOPS")
+//                                    Text("SKIRTS").tag("SKIRTS")
+//                                    Text("TEES").tag("TEES")
+//                                    Text("WORK").tag("WORK WEAR")
+//                                }.pickerStyle(SegmentedPickerStyle())
+//                                .frame(width: 320,height: 19,alignment: .leading)
+//                                .padding()
+//                                .onChange(of: selectedCategory){ newValue in
+////                                        productVM.filterByCategory(forCategoryType: newValue)
+////                                    naviagte = true
+//                                    selectedCat = newValue
+//                                    selectedTab = 2
+//                                  
+//                            
+//                                    
+//                                }
+                        
+                           // }.padding()
+//                            LazyVGrid(columns: Array(repeating: GridItem(), count: 2), spacing: 15){
+//                                ForEach(productVM.products, id: \.id) { product in
+//                                    ProductCard(product: product).environmentObject(cartManager)
+//                                        .onTapGesture {
+//                                            selectedProduct = product
+//                                            isSelected = true
+//                                         
+//                                        }
+//                                    
+//                                }
+//                            }
+                    
+                        }
+                       
+                    }
                     ZStack{
                         VStack {
                             Text("Best Sellers")
@@ -60,7 +130,7 @@ struct HomeScreen: View {
                             
                             
                                 LazyVGrid(columns: columns, spacing: 20){
-                                    ForEach(productVM.products.shuffled().prefix(2), id: \.compundID) {product in
+                                    ForEach(productVM.products.shuffled().prefix(6), id: \.id) {product in
                                         ProductCard(product: product).environmentObject(cartManager)
                                             .onTapGesture {
                                                 selectedProduct = product
@@ -74,35 +144,14 @@ struct HomeScreen: View {
                             
                         }
                     }
-                    
-                    ZStack {
-                        VStack {
-                            Text("Shop by Category")
-                                .frame(width: 320,height: 19,alignment: .leading)
-                                .font(.system(size: 22,weight: .medium))
-                                .padding()
-                            
-                            LazyVGrid(columns: columns, spacing: 20){
-                                ForEach(productCatVM.products, id: \.id) {category in
-//                                    NavigationLink(destination: ProductsScreen(selectedProduct: category)){
-                                        newCategoryCard(newCategory: category)
-                                        
-                                  //  }
-                                   
-                                }
-                        
-                            }.padding()
-                           
-                        }
-                       
-                    }
+      
                 }
                 
                 
                 
             }
              .navigationBarBackButtonHidden(true)
-                .toolbar {
+             .toolbar {
                     HStack {
                         Text("Arienti")
                             .font(.system(size:35))
@@ -136,6 +185,9 @@ struct HomeScreen: View {
                    
                   
               }
+//              if naviagte {
+//                  NavigationLink(destination: ProductsScreen(proucts: productVM.filteredProducts), isActive: $naviagte)
+//              }
           }
               .frame(maxWidth: .infinity, maxHeight: .infinity)
                   
@@ -187,46 +239,36 @@ struct HomeScreen: View {
     }
 }
 
-@ViewBuilder func newCategoryCard(newCategory: Product) -> some View {
-    ZStack(alignment: .topTrailing) {
-        ZStack(alignment: .bottom){
-            KFImage.url(URL(string: "https://www.arienti.lk/cdn/shop/files" + (newCategory.category.catimageURL ?? "")))
-                .resizable()
-                .cornerRadius(20)
-                .frame(width: 170,height: 250)
-                .scaledToFit()
-            
-            VStack(alignment: .leading){
-                Text(newCategory.category.catname ?? "")
-                    .bold()
-                    .foregroundStyle(Color(.black))
+//@ViewBuilder func newCategoryCard(newCategory: Product) -> some View {
+//    ZStack(alignment: .topTrailing) {
+//        ZStack(alignment: .bottom){
+////            KFImage.url(URL(string: "https://www.arienti.lk/cdn/shop/files" + (newCategory.category.catimageURL ?? "")))
+//            Image("Dresses")
+//                .resizable()
+//                .cornerRadius(20)
+//                .frame(width: 170,height: 250)
+//                .scaledToFit()
+//            
+//            VStack(alignment: .leading){
+//                Text(newCategory.category ?? "")
+//                    .bold()
+//                    .foregroundStyle(Color(.black))
+//
+//
+//                
+//            }.padding()
+//                .frame(width: 170,alignment: .leading)
+//                .background(.white)
+//                .cornerRadius(10)
+//            
+//        }
+//        .frame(width: 170,height: 280)
+//        .shadow(radius: 3)
+//        
+//    }
+//}
 
-
-                
-            }.padding()
-                .frame(width: 170,alignment: .leading)
-                .background(.white)
-                .cornerRadius(10)
-            
-        }
-        .frame(width: 170,height: 280)
-        .shadow(radius: 3)
-        
-        Button(action: {
-            print("added to cart")
-        }, label: {
-            Image(systemName: "cart")
-                .padding(8)
-                .foregroundColor(.black)
-                .background(.white)
-                .cornerRadius(50)
-                .padding()
-                
-        })
-    }
-}
-
-#Preview {
-    HomeScreen()
-        .environmentObject(CartManager())
-}
+//#Preview {
+//    HomeScreen(selectedCat:.constant("test") , selectedTab: .constant(0))
+//        .environmentObject(CartManager())
+//}

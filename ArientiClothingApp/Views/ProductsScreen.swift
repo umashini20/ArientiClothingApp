@@ -16,8 +16,14 @@ struct ProductsScreen: View {
     @State var navigate : Bool = false
     @State var selectedProduct : Product?
     @State var isSelected : Bool = false
+    @Binding var selectedCat: String
 //    var numberOfProducts:Int
     var columns = [GridItem(.adaptive(minimum: 160), spacing: 20)]
+    
+    var filteredCategory: [Product] {
+        guard !selectedCat.isEmpty else {return productVM.products}
+        return productVM.products.filter{ $0.category.localizedStandardContains(selectedCat)}
+    }
     var body: some View {
         
         NavigationView{
@@ -25,33 +31,53 @@ struct ProductsScreen: View {
                 VStack{
                     ZStack{
                         VStack {
-                            HStack {
-                                Image(systemName: "line.horizontal.3")
-                                    .imageScale(.large)
-                                    .frame(width: 350,alignment: .leading)
-//                                Text("Dresses")
-//                                    .frame(width: 290,height: 19,alignment: .top)
-//                                    .font(.system(size: 24,weight: .regular))
-//                                .padding()
-                            }
+        
                             
-                            
-//                            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-                                
+                            if !(selectedCat == ""){
+                                HStack{
+                                    Text("Category: \( selectedCat)")
+                                        .bold()
+                                        .foregroundColor(.lightPink)
+                                       
+                                    Spacer()
+                                        
+                                    
+                                    
+                                }.padding()
+                                //
                                 LazyVGrid(columns: columns, spacing: 20){
-                                    ForEach(productVM.products, id: \.compundID) {product in
+                                    ForEach(filteredCategory, id: \.id) {product in
                                         ProductCard(product: product).environmentObject(cartManager)
                                             .onTapGesture {
                                                 selectedProduct = product
                                                 isSelected = true
-                                             
+                                                
                                             }
-//                                        if isSelected{
-//                                            ProductDetailsScreen(selectProduct: $selectedProduct, isShowingDetails: .constant(true))
-//                                            
-//                                        }
-                                    }
+                                    }.padding()
+                                }
+                            }
+//                            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                                
+                            VStack {
+                                Text("All Products")
+                                    .frame(width: 320,height: 19,alignment: .leading)
+                                    .font(.system(size: 22,weight: .medium))
+                                    .padding()
+                                LazyVGrid(columns: columns, spacing: 20){
+                                        ForEach(productVM.products, id: \.id) {product in
+                                            ProductCard(product: product).environmentObject(cartManager)
+                                                .onTapGesture {
+                                                    selectedProduct = product
+                                                    isSelected = true
+                                                 
+                                                }
+    //                                        if isSelected{
+    //                                            ProductDetailsScreen(selectProduct: $selectedProduct, isShowingDetails: .constant(true))
+    //                                            
+    //                                        }
+                                        }
                                 }.padding()
+                            }
                          
                             
                         }
@@ -160,7 +186,7 @@ ZStack(alignment: .topTrailing) {
 
     
 
-#Preview {
-    ProductsScreen()
-        .environmentObject(CartManager())
-}
+//#Preview {
+//    ProductsScreen(selectedCat: .constant("sample"))
+//        .environmentObject(CartManager())
+//}
