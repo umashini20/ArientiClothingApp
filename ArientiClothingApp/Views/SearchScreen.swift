@@ -16,6 +16,8 @@ struct SearchScreen: View {
     @State private var searchProducts = ""
     @State private var isList: Bool = false
     @State private var isShowingDetails: Bool = false
+    @State var selectedProduct : Product?
+    @State var isSelected : Bool = false
     
     
     
@@ -42,11 +44,36 @@ struct SearchScreen: View {
                         .fontWeight(.medium)
                         .padding()
                 }
+                .onTapGesture {
+                    selectedProduct = product
+                    isSelected = true
+                    
+                }
+                
                 
             }
-            .navigationTitle("Explore")
+            .navigationBarBackButtonHidden(true)            .navigationTitle(Text("Explore"))
             .searchable(text: $searchProducts, prompt: "Search")
         }
+      
+        .blur(radius : isSelected ? /*@START_MENU_TOKEN@*/3.0/*@END_MENU_TOKEN@*/ : 0)
+        .overlay(
+          ZStack{
+              if isSelected{
+                  ProductDetailsScreen(selectProduct: $selectedProduct, isShowingDetails: .constant(true), isSelected: $isSelected)
+                      .frame(width: 300, height: 530)
+                   
+                  
+              }
+          }
+              .frame(maxWidth: .infinity, maxHeight: .infinity)
+                  
+          )
+        .onChange(of: isSelected) { newValue in
+                   if !newValue {
+                       selectedProduct = nil
+                   }
+               }
         
     }
 }

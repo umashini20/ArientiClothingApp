@@ -114,12 +114,13 @@ struct ProductsScreen: View {
                     }
                 }
         }
+      
       .blur(radius : isSelected ? /*@START_MENU_TOKEN@*/3.0/*@END_MENU_TOKEN@*/ : 0)
 //        .navigationViewStyle(StackNavigationViewStyle())
       .overlay(
         ZStack{
             if isSelected{
-                ProductDetailsScreen(selectProduct: $selectedProduct, isShowingDetails: .constant(true))
+                ProductDetailsScreen(selectProduct: $selectedProduct, isShowingDetails: .constant(true), isSelected: $isSelected)
                     .frame(width: 300, height: 530)
                  
                 
@@ -128,6 +129,11 @@ struct ProductsScreen: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
                 
         )
+      .onChange(of: isSelected) { newValue in
+                 if !newValue {
+                     selectedProduct = nil
+                 }
+             }
         
    
 

@@ -36,7 +36,8 @@ struct HomeScreen: View {
 //    var numberOfProducts:Int
     var columns = [GridItem(.adaptive(minimum: 160), spacing: 20)]
     var body: some View {
-        NavigationView{
+        
+        NavigationStack{
             
             
             ScrollView {
@@ -86,37 +87,7 @@ struct HomeScreen: View {
                                     }
                                 }
                             }
-//                                Picker(selection: $selectedCategory, label: Text("Select Category")){
-//                                    Text("DRESS").tag("DRESSES")
-//                                    Text("TOPS").tag("TOPS")
-//                                    Text("SKIRTS").tag("SKIRTS")
-//                                    Text("TEES").tag("TEES")
-//                                    Text("WORK").tag("WORK WEAR")
-//                                }.pickerStyle(SegmentedPickerStyle())
-//                                .frame(width: 320,height: 19,alignment: .leading)
-//                                .padding()
-//                                .onChange(of: selectedCategory){ newValue in
-////                                        productVM.filterByCategory(forCategoryType: newValue)
-////                                    naviagte = true
-//                                    selectedCat = newValue
-//                                    selectedTab = 2
-//                                  
-//                            
-//                                    
-//                                }
-                        
-                           // }.padding()
-//                            LazyVGrid(columns: Array(repeating: GridItem(), count: 2), spacing: 15){
-//                                ForEach(productVM.products, id: \.id) { product in
-//                                    ProductCard(product: product).environmentObject(cartManager)
-//                                        .onTapGesture {
-//                                            selectedProduct = product
-//                                            isSelected = true
-//                                         
-//                                        }
-//                                    
-//                                }
-//                            }
+
                     
                         }
                        
@@ -149,9 +120,10 @@ struct HomeScreen: View {
                 
                 
                 
+                
             }
-             .navigationBarBackButtonHidden(true)
              .toolbar {
+                 
                     HStack {
                         Text("Arienti")
                             .font(.system(size:35))
@@ -175,23 +147,27 @@ struct HomeScreen: View {
                
     
         }
+        
         .blur(radius : isSelected ? /*@START_MENU_TOKEN@*/3.0/*@END_MENU_TOKEN@*/ : 0)
-  //        .navigationViewStyle(StackNavigationViewStyle())
+        .navigationViewStyle(StackNavigationViewStyle())
         .overlay(
           ZStack{
               if isSelected{
-                  ProductDetailsScreen(selectProduct: $selectedProduct, isShowingDetails: .constant(true))
+                  ProductDetailsScreen(selectProduct: $selectedProduct, isShowingDetails: .constant(true), isSelected: $isSelected)
                       .frame(width: 300, height: 530)
                    
                   
               }
-//              if naviagte {
-//                  NavigationLink(destination: ProductsScreen(proucts: productVM.filteredProducts), isActive: $naviagte)
-//              }
           }
               .frame(maxWidth: .infinity, maxHeight: .infinity)
                   
           )
+        .onChange(of: isSelected) { newValue in
+                   if !newValue {
+                       selectedProduct = nil
+                   }
+               }
+          
         
 
     }
@@ -239,34 +215,6 @@ struct HomeScreen: View {
     }
 }
 
-//@ViewBuilder func newCategoryCard(newCategory: Product) -> some View {
-//    ZStack(alignment: .topTrailing) {
-//        ZStack(alignment: .bottom){
-////            KFImage.url(URL(string: "https://www.arienti.lk/cdn/shop/files" + (newCategory.category.catimageURL ?? "")))
-//            Image("Dresses")
-//                .resizable()
-//                .cornerRadius(20)
-//                .frame(width: 170,height: 250)
-//                .scaledToFit()
-//            
-//            VStack(alignment: .leading){
-//                Text(newCategory.category ?? "")
-//                    .bold()
-//                    .foregroundStyle(Color(.black))
-//
-//
-//                
-//            }.padding()
-//                .frame(width: 170,alignment: .leading)
-//                .background(.white)
-//                .cornerRadius(10)
-//            
-//        }
-//        .frame(width: 170,height: 280)
-//        .shadow(radius: 3)
-//        
-//    }
-//}
 
 //#Preview {
 //    HomeScreen(selectedCat:.constant("test") , selectedTab: .constant(0))

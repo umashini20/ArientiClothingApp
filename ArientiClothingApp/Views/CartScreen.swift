@@ -10,6 +10,11 @@ import SwiftUI
 struct CartScreen: View {
     @EnvironmentObject var cartManager: CartManager
     var body: some View {
+        VStack{
+            Text("Cart")
+                .bold()
+                .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+        }
         ScrollView {
             if cartManager.cartItems.count > 0 {
                 ForEach(cartManager.cartItems, id: \.product?.id){
@@ -28,7 +33,6 @@ struct CartScreen: View {
             }
             
         }
-        .navigationTitle("Cart")
         .padding(.top)
     }
 }
