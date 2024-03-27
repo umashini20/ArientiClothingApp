@@ -45,7 +45,9 @@ struct HomeScreen: View {
                 VStack{
                     
                     VStack {
-                        Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                        NavigationLink {
+                            ProductsScreen(selectedCat: $selectedCat)
+                        } label: {
                             ZStack{
                                 VStack{
                                     Image("promo")
@@ -55,7 +57,7 @@ struct HomeScreen: View {
                                    
                                 
                             }.frame(maxWidth: 370)
-                        })
+                        }
                     }.padding()
                     
                     ZStack {

@@ -28,6 +28,33 @@ struct CartScreen: View {
                         .bold()
                 }
                 .padding()
+                HStack(spacing: 16){
+                    Image(systemName: "location.circle.fill")
+                         .resizable()
+                         .scaledToFit()
+                         .frame(width: 24, height: 24)
+                     
+                     Text("Delivery Address:  _____________")
+                         .font(.system(size: 18, weight: .semibold))
+                         .foregroundStyle(.black)
+                         .fontWeight(.medium)
+                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                     
+                    
+                }
+                .padding(20)
+                NavigationLink{
+                    LoginPopUpScreen()
+                } label: {
+                    Text("CHECKOUT")
+                        .font(.system(size: 16, weight: .semibold))
+                        .frame(maxWidth: 290, minHeight: 40, alignment: .center)
+                        .background(.lightPink)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                }
+                .padding(.bottom,20)
+               
             } else {
                 Text("Cart Is Empty!")
             }
