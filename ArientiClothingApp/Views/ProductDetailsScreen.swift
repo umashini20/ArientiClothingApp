@@ -69,7 +69,9 @@ struct ProductDetailsScreen: View {
                                 .fontWeight(.medium)
                                 .padding(2)
                                
-                        }.padding([.leading, .trailing], 20) 
+                        }
+                        
+                        .padding([.leading, .trailing], 20)
                         
                         Button{
                             cartManager.addToCart(product: selectProduct!)
@@ -85,13 +87,15 @@ struct ProductDetailsScreen: View {
                         }
                         .padding(.bottom,20)
                         
-                    }
+            }
                     .frame(width: 300, height: 540)
                             .background(Color(.systemBackground))
                             .cornerRadius(10)
                         .shadow(radius: 40)
-        }.navigationTitle("")
-            .navigationBarBackButtonHidden(true)
+        }
+        .navigationTitle("")
+        .navigationBarBackButtonHidden(true)
+        
     
        
                                  
@@ -103,4 +107,5 @@ struct ProductDetailsScreen: View {
 
 #Preview {
     ProductDetailsScreen(selectProduct: .constant(MockData.sampleProduct),isShowingDetails:.constant(true), isSelected: .constant(true))
+        .environmentObject(CartManager())
 }

@@ -22,6 +22,7 @@ struct NavigationScreen: View {
                     }
                     .tag(0)
                 SearchScreen()
+                    .environmentObject(cartManager)
                     .tabItem {
                         Image(systemName: "magnifyingglass").renderingMode(/*@START_MENU_TOKEN@*/.template/*@END_MENU_TOKEN@*/)
                         Text("Search")

@@ -53,7 +53,7 @@ struct ProductsScreen: View {
                                                 isSelected = true
                                                 
                                             }
-                                    }.padding()
+                                    }.padding(.leading)
                                 }
                             }
 //                            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {

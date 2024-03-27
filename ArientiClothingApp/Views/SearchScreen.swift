@@ -9,6 +9,7 @@ import SwiftUI
 import Kingfisher
 
 struct SearchScreen: View {
+    @EnvironmentObject var cartManager: CartManager
     @StateObject var productView = ProductViewModel()
     
 //    @State private var categories: [CategoryList] = []
@@ -61,6 +62,7 @@ struct SearchScreen: View {
           ZStack{
               if isSelected{
                   ProductDetailsScreen(selectProduct: $selectedProduct, isShowingDetails: .constant(true), isSelected: $isSelected)
+                      .environmentObject(cartManager)
                       .frame(width: 300, height: 530)
                    
                   
@@ -80,4 +82,5 @@ struct SearchScreen: View {
 
 #Preview {
     SearchScreen()
+        .environmentObject(CartManager())
 }
